@@ -1,0 +1,26 @@
+{
+  "name": "bilara-verse",
+  "version": "1.0.0",
+  "description": "HTML verse generated from suttacentral/bilara-data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc-voice/bilara-verse.git"
+  },
+  "keywords": [
+    "Suttacentral",
+    "Bilara"
+  ],
+  "author": "Karl Lew",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sc-voice/bilara-verse/issues"
+  },
+  "homepage": "https://github.com/sc-voice/bilara-verse#readme",
+  "dependencies": {
+    "scv-bilara": "^1.4.48"
+  }
+}
