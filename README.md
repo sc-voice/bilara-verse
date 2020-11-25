@@ -1,4 +1,7 @@
-Intermediate HTML repository for Thig/Thag verse translated by Bhante Sujato 
+Intermediate HTML repository for @Snowbird.
+
+### Description
+Thig/Thag verse translated by Bhante Sujato 
 from original source [bilara-data](https://github.com/suttacentral/bilara-data)
 
 ### Installation
