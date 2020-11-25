@@ -1,4 +1,4 @@
-Intermediate HTML repository for @Snowbird.
+Intermediate HTML repository for [@Snowbird](https://discourse.suttacentral.net/u/Snowbird/profile-hidden).
 
 ### Description
 Thig/Thag verse translated by Bhante Sujato 
