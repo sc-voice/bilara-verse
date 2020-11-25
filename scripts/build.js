@@ -12,9 +12,14 @@ const TRANS_DIR = path.join(APP_DIR, 'translation/en/sujato/sutta');
 
 (async function(){
     let eh = await new ExportHtml().initialize();
-    let suid = "thig4.1";
-    let lines = await eh.export(suid, 2);
-    let outPath = path.join(TRANS_DIR, 'kn/thig/thig4.1.html');
-    await fs.promises.writeFile(outPath, lines.join('\n'));
-    console.log(`updated:`, outPath);
+    let suttaIds = eh.bilaraData.suttaIds
+        .filter(id=>id.startsWith('thig') || id.startsWith('thag'));
+    for (let i = 0; i < suttaIds.length; i++) {
+        let suid = suttaIds[i];
+        let lines = await eh.export(suid, 2);
+        let folder = suid.replace(/[0-9].*/u,'');
+        let outPath = path.join(TRANS_DIR, `kn/${folder}/${suid}.html`);
+        await fs.promises.writeFile(outPath, lines.join('\n'));
+        console.log(`updated:`, outPath);
+    }
 })();
