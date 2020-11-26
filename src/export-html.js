@@ -6,6 +6,7 @@
         BilaraData,
         Seeker,
         SuttaCentralId,
+        Verse,
     } = require('scv-bilara');
 
     class ExportHtml {
@@ -13,7 +14,6 @@
             (opts.logger || logger).logInstance(this);
             this.groupBy= opts.groupBy || 'line';
             this.sync = opts.sync;
-            this.linebreak = opts.linebreak || '<br/>\n';
             this.scLinks = opts.scLinks;
             this.html = Object.assign({
                 title: [
@@ -40,6 +40,7 @@
             let includeUnpublished = opts.includeUnpublished || false;
             let readFile = opts.readFile || false;
             let execGit = opts.execGit;
+            let linebreak = this.linebreak = opts.linebreak || '<br/>\n';
             let bilaraData = this.bilaraData = opts.bilaraData || new BilaraData({
                 includeUnpublished,
                 execGit,
@@ -237,6 +238,9 @@
         }
 
         exportVerse(res, pattern, n=0) {
+            let {
+                linebreak,
+            } = this;
             var {
                 lang,
                 searchLang,
@@ -245,6 +249,13 @@
             let showPli = n===2 && searchLang===lang || 
                 n>2 && searchLang!=='pli' && lang!=='pli';
             let showEn = n>2 && searchLang!=='en' && lang!=='en';
+            let verse = new Verse({
+                lang,
+                searchLang,
+                showPli,
+                showEn,
+                linebreak,
+            });
             let lines = [];
             res.mlDocs.forEach(mld => {
                 let {
@@ -252,6 +263,7 @@
                     author_uid,
                 } = mld;
                 let segments = mld.segments();
+                //lines = lines.concat(verse.versify(segments, mld.lang, author_uid));
                 let allMatched = segments.reduce((s,a)=>s.matched ? a : false, true);
                 let matched = !allMatched;
                 let verse = [];
@@ -273,7 +285,7 @@
                     }
                     matched = matched || seg.matched;
                     verse.push(seg);
-                    if (i === segments.length && matched) {
+                    if (i === segments.length-1 && matched) {
                         lines = lines.concat(
                             this.printVerse({
                                 verse, 

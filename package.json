@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/sc-voice/bilara-verse#readme",
   "dependencies": {
-    "scv-bilara": "^1.4.48"
+    "scv-bilara": "^1.4.51"
   },
   "devDependencies": {
     "mocha": "^8.2.1",
